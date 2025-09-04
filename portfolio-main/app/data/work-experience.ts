@@ -1,58 +1,12 @@
-type Project = {
-  name: string
-  description: string
-  link: string
-  video: string
-  id: string
-}
-
 type WorkExperience = {
-  company: string
-  title: string
-  start: string
-  end: string
-  link: string
-  description: string []
-  id: string
+    company: string
+    title: string
+    start: string
+    end: string
+    link: string
+    description: string []
+    id: string
 }
-
-type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
-}
-
-type SocialLink = {
-  label: string
-  link: string
-}
-
-type TechnicalSkills = {
-  category: string
-  skills: string []
-  id: string
-}
-
-export const PROJECTS: Project[] = [
-  {
-    name: 'Project one',
-    description:
-      'Description of project one.',
-    link: 'https://www.google.com/',
-    video:
-      'https://www.google.com/',
-    id: 'project1',
-  },
-  {
-    name: 'Project two',
-    description: 'project two description',
-    link: 'https://www.google.com/',
-    video:
-      'https://www.google.com/',
-    id: 'project2',
-  },
-]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
@@ -93,43 +47,3 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     id: 'work3',
   },
 ]
-
-export const SOCIAL_LINKS: SocialLink[] = [
-  {
-    label: 'Github',
-    link: 'https://github.com/Adoyle210',
-  },
-  {
-    label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/alexis-doyle-13059b224/',
-  },
-]
-
-export const TECHNICAL_SKILLS: TechnicalSkills[] = [
-  {
-    category: 'Programming Languages',
-    skills: ['C', 'C++', 'Python', 'JavaScript', 'Kotlin', 'Next.js', 'React'],
-    id: 'tech1',
-  },
-  {
-    category: 'Development Tools',
-    skills: ['Unreal Engine 5', 'Git', 'Docker', 'Blender', 'PiXYZ'],
-    id: 'tech2',
-  },
-  {
-    category: 'Technical Skills',
-    skills: ['Web Development', 'Data Analysis', 'Full-Stack Development', 'VR/AR Development', '3D Modeling'],
-    id: 'tech3',
-  },
-  {
-    category: 'Soft Skills',
-    skills: ['Project Management', 'Teamwork', 'Problem-Solving', 'Leadership'],
-    id: 'tech4',
-  },
-  {
-    category: 'Languages',
-    skills: ['English (Native)', 'Spanish (Proficient)'],
-    id: 'tech5',
-  },
-]
-export const EMAIL = 'doylalex@oregonstate.edu'

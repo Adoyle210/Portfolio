@@ -12,13 +12,15 @@ import {
 } from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
+
+/* Data */
+import { PROJECTS } from './data/project'
+import { WORK_EXPERIENCE } from './data/work-experience'
+import { TECHNICAL_SKILLS } from './data/technical-skills'
 import {
-  PROJECTS,
-  WORK_EXPERIENCE,
-  TECHNICAL_SKILLS,
   EMAIL,
   SOCIAL_LINKS,
-} from './data'
+} from './data/links'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
