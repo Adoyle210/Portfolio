@@ -76,9 +76,9 @@ export function Footer() {
             <span>Built with Motion-Primitives & <HeartIcon className="h-3 w-3 inline" /></span>
           </TextLoop>
         </a>
-        <div className="text-xs text-zinc-400">
+        {/* <div className="text-xs text-zinc-400">
           <ThemeSwitch />
-        </div>
+        </div> */}
       </div>
     </footer>
   )
