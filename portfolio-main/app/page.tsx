@@ -135,6 +135,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
             I'm a graduate student pursuing my M.S. in Computer Science at Oregon State University, with a focus on Computer Graphics and immersive technologies.
@@ -150,6 +151,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
+        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
@@ -179,6 +181,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
             <a
@@ -206,6 +209,12 @@ export default function Personal() {
                     {job.start} - {job.end}
                   </p>
                 </div>
+                <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+                <ul className="list-disc pl-5 mt-2 space-y-1 text-zinc-500 dark:text-zinc-400">
+                  {job.description.map((description) => (
+                    <li key={description}>{description}</li>
+                  ))}
+                </ul>
               </div>
             </a>
           ))}
@@ -217,6 +226,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-3 text-lg font-medium">Skills</h3>
+        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
