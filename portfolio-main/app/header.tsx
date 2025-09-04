@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { MenuIcon, XIcon, FlowerIcon } from 'lucide-react'
+import { MenuIcon, XIcon, SparklesIcon } from 'lucide-react'
 import { motion, AnimatePresence, Variants } from 'motion/react'
 import { ThemeSwitch } from '@/components/ui/switch-theme'
 
@@ -37,7 +37,7 @@ export function Header() {
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}
           <a href="#home" className="text-xl font-bold text-primary-500 dark:text-primary-400">
-            <FlowerIcon />
+            <SparklesIcon />
             <span className="text-secondary-500"></span>
           </a>
 

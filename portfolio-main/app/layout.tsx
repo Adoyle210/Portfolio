@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Alexis M. Doyle - Personal Portfolio',
+    default: 'Alexis Doyle | Portfolio',
     template: '%s | Doyle'
   },
   description:  'Alexis M. Doyle is a software engineer with a passion for building innovative solutions.',
