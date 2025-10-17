@@ -14,11 +14,12 @@ type Project = {
 export const PROJECTS: Project[] = [
   {
     name: 'Iteractive Fractal Shader Visualization',
-    description: 'Created an interactive shader-based visualization that generates mesmerizing animated fractal patterns using GLSL. ',
+    description: 'Created an interactive shader-based visualization that generates mesmerizing animated fractal pattern using GLSL that change over time.',
     link: 'https://github.com/Adoyle210/GradPortfolio/tree/main/CS%20557%20-%20Computer%20Graphics%20Shaders/Final',
     video: 'https://www.google.com/',
-    image: ['img/fractal/fractal3.png'],
-    skills: [''],
+    image: ['img/fractal/fractal3.png', 'img/fractal/fractal2.png'],
+    skills: ['Shaders'],
+    language: ['GLSL'],
     year: 2025,
     pinned: true,
     id: 'Project-fractal'
