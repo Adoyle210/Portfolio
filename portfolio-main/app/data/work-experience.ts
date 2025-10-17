@@ -12,7 +12,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Oregon State University',
     title: 'Graduate Research Assistant',
-    start: '2024',
+    start: 'December 2024',
     end: 'Present',
     link: 'https://www.raffaeledeamicis.com/virtual-augmented-reality-class',
     description: ['Spearheading development of innovative educational game using VR, large-screen, and mobile platforms to teach microelectronics to children',
