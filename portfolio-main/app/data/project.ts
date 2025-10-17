@@ -13,6 +13,43 @@ type Project = {
 }
 export const PROJECTS: Project[] = [
   {
+    name: 'Iteractive Fractal Shader Visualization',
+    description: 'Created an interactive shader-based visualization that generates mesmerizing animated fractal patterns using GLSL. ',
+    link: 'https://github.com/Adoyle210/GradPortfolio/tree/main/CS%20557%20-%20Computer%20Graphics%20Shaders/Final',
+    video: 'https://www.google.com/',
+    image: ['img/fractal/fractal3.png'],
+    skills: [''],
+    year: 2025,
+    pinned: true,
+    id: 'Project-fractal'
+  },
+  {
+    name: 'Superman Flying',
+    description: 'This is a mini project where I practiced animating characters in Unreal to give the appearance of flying.',
+    link: 'https://www.google.com/',
+    video: 'https://www.google.com/',
+    image: ['img/flight/flight1.png', 'img/flight/flight2.png'],
+    skills: ['Game Development'],
+    language: ['C++'],
+    tools: ['Unreal Engine 5'],
+    year: 2025,
+    pinned: true,
+    id: 'project-flying'
+  },
+  {
+    name: 'Porfolio Website',
+    description: 'This project is a portfolio website. This was my first project building a portfolio website.',
+    link: 'https://www.google.com/',
+    video: 'https://www.google.com/',
+    image: ['img/portfolio.png'],
+    skills: ['Web Development'],
+    language: ['HTML', 'CSS', 'JavaScript'],
+    tools: ['Next.js', 'Tailwind CSS'],
+    year: 2025,
+    pinned: false,
+    id: 'project-portfolio-website',
+  },
+  {
     name: 'Animating Cooking in Blender',
     description: 'This project is a animating cooking in Blender. In this project I simulated water, fire, frying,and smoke/steam effects.',
     link: 'https://www.youtube.com/watch?v=bODAEUhxELU&t=4s',
@@ -33,7 +70,7 @@ export const PROJECTS: Project[] = [
     skills: ['3D Modeling', 'Rigging'],
     tools: ['Blender'],
     year: 2025,
-    pinned: true,
+    pinned: false,
     id: 'project-modeling-and-rigging-a-bunny',
   },
   {
@@ -45,7 +82,7 @@ export const PROJECTS: Project[] = [
     skills: ['3D Modeling'],
     tools: ['Blender'],
     year: 2025,
-    pinned: true,
+    pinned: false,
     id: 'project-isometric-kitchen-model',
   },  
   {
@@ -80,7 +117,7 @@ export const PROJECTS: Project[] = [
       description: 'This project is a weather app that allows you to search for weather information for a specific location.',
       link: 'https://www.google.com/',
       video: 'https://www.google.com/',
-      image: ['img/kitchenModel.png'], // Placeholder image
+      image: ['img/portfolio.png'], // Placeholder image
       skills: ['Mobile Development'],
       language: ['Kotlin'],
       year: 2024,
@@ -92,7 +129,7 @@ export const PROJECTS: Project[] = [
       description: 'Tarpaulin is a lightweight course management tool that\'s an "alternative" to Canvas.',
       link: 'https://github.com/Adoyle210/Tarpaulin_API',
       video: 'https://www.google.com/',
-      image: ['img/kitchenModel.png'], // Placeholder image
+      image: ['img/portfolio.png'], // Placeholder image
       skills: ['API Development'],
       language: ['JavaScript'],
       tools: ['PostgreSQL'],
