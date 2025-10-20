@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
@@ -13,7 +13,7 @@ import {
 } from 'motion/react'
 
 // Define a union type for the possible themes returned by the hook
-type ThemeOption = 'light' | 'dark' | 'system';
+type ThemeOption = 'light' | 'dark' | 'system'
 
 export function ThemeSwitch() {
   const [mounted, setMounted] = useState<boolean>(false)
@@ -28,13 +28,13 @@ export function ThemeSwitch() {
   }
 
   const isDarkMode = resolvedTheme === 'dark'
-  const IconToDisplay = isDarkMode ? SunIcon : MoonIcon;
+  const IconToDisplay = isDarkMode ? SunIcon : MoonIcon
 
   // Function to toggle between themes
   const toggleTheme = () => {
     if (theme === 'light') {
       setTheme('dark')
-    }else {
+    } else {
       setTheme('light')
     }
   }
@@ -50,7 +50,7 @@ export function ThemeSwitch() {
   return (
     <button
       className={cn(
-        "inline-flex h-7 w-7 items-center justify-center rounded-lg text-zinc-500 transition-colors duration-100 focus-visible:outline-2 dark:text-zinc-400"
+        'inline-flex h-7 w-7 items-center justify-center rounded-lg text-zinc-500 transition-colors duration-100 focus-visible:outline-2 dark:text-zinc-400',
       )}
       type="button"
       aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} theme`}
@@ -72,4 +72,4 @@ export function ThemeSwitch() {
   )
 }
 
-export default ThemeSwitch;
+export default ThemeSwitch

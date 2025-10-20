@@ -20,10 +20,7 @@ import { AnimatedBackground } from '@/components/ui/animated-background'
 import { PROJECTS } from './data/project'
 import { WORK_EXPERIENCE } from './data/work-experience'
 import { TECHNICAL_SKILLS } from './data/technical-skills'
-import {
-  EMAIL,
-  SOCIAL_LINKS,
-} from './data/links'
+import { EMAIL, SOCIAL_LINKS } from './data/links'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -51,30 +48,33 @@ type ProjectMediaProps = {
 
 function ProjectMedia({ video, images }: ProjectMediaProps) {
   // Check if video is valid (not placeholder URL and not empty)
-  const isValidVideo = video && 
-    video !== 'https://www.google.com/' && 
+  const isValidVideo =
+    video &&
+    video !== 'https://www.google.com/' &&
     video.trim() !== '' &&
-    (video.startsWith('http') || video.startsWith('/') || video.startsWith('video/'))
+    (video.startsWith('http') ||
+      video.startsWith('/') ||
+      video.startsWith('video/'))
 
   // Check if images are valid (not placeholder URL and not empty)
-  const isValidImage = images && 
-    images.length > 0 && 
-    images[0] !== 'https://www.google.com/' && 
+  const isValidImage =
+    images &&
+    images.length > 0 &&
+    images[0] !== 'https://www.google.com/' &&
     images[0].trim() !== ''
 
   // Check if it's a YouTube video
-  const isYouTubeVideo = isValidVideo && (
-    video.includes('youtube.com') || 
-    video.includes('youtu.be')
-  )
+  const isYouTubeVideo =
+    isValidVideo &&
+    (video.includes('youtube.com') || video.includes('youtu.be'))
 
   // Check if it's a local video file
-  const isLocalVideo = isValidVideo && (
-    video.startsWith('video/') || 
-    video.endsWith('.mp4') || 
-    video.endsWith('.webm') || 
-    video.endsWith('.mov')
-  )
+  const isLocalVideo =
+    isValidVideo &&
+    (video.startsWith('video/') ||
+      video.endsWith('.mp4') ||
+      video.endsWith('.webm') ||
+      video.endsWith('.mov'))
 
   // If we have a YouTube video, use YouTube embed
   if (isYouTubeVideo) {
@@ -252,8 +252,10 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
 
   // Fallback: show a placeholder
   return (
-    <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-      <span className="text-zinc-500 dark:text-zinc-400">No media available</span>
+    <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-200 dark:bg-zinc-800">
+      <span className="text-zinc-500 dark:text-zinc-400">
+        No media available
+      </span>
     </div>
   )
 }
@@ -305,7 +307,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div>
-        <Link href="/" className="font-medium text-black dark:text-white">
+          <Link href="/" className="font-medium text-black dark:text-white">
             Alexis M. Doyle
           </Link>
           <TextEffect
@@ -316,13 +318,15 @@ export default function Personal() {
             delay={0.5}
           >
             Software Engineer
-          </TextEffect> 
+          </TextEffect>
         </div>
-        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+        <hr className="mb-5 border-zinc-300 dark:border-zinc-600" />
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            I'm a graduate student pursuing my M.S. in Computer Science at Oregon State University, with a focus on Computer Graphics and immersive technologies.
-          {/*  I specialize in developing educational VR applications, 3D environments, and full-stack web solutions.
+            I'm a graduate student pursuing my M.S. in Computer Science at
+            Oregon State University, with a focus on Computer Graphics and
+            immersive technologies.
+            {/*  I specialize in developing educational VR applications, 3D environments, and full-stack web solutions.
           My passion lies in creating engaging, interactive experiences that make complex concepts accessible through technology. I'm currently leading research on educational game development using VR, large-screen, and mobile platforms to teach microelectronics to children.
           With experience in both industry (Genentech, Daimler Trucks) and academia, I bring a unique perspective to software development, combining practical problem-solving skills with cutting-edge research in immersive technologies. */}
           </p>
@@ -333,10 +337,12 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 id="selected-projects" className="mb-5 text-lg font-medium">Featured Projects</h3>
-        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+        <h3 id="selected-projects" className="mb-5 text-lg font-medium">
+          Featured Projects
+        </h3>
+        <hr className="mb-5 border-zinc-300 dark:border-zinc-600" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.filter(project => project.pinned).map((project) => (
+          {PROJECTS.filter((project) => project.pinned).map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                 <ProjectMedia video={project.video} images={project.image} />
@@ -348,7 +354,7 @@ export default function Personal() {
                   target="_blank"
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
                 </a>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
@@ -357,12 +363,12 @@ export default function Personal() {
             </div>
           ))}
         </div>
-        
+
         {/* More Projects Button */}
         <div className="mt-8 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-6 py-3 text-zinc-900 transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
           >
             View All Projects
             <svg
@@ -388,8 +394,10 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 id="work-experience" className="mb-5 text-lg font-medium">Work Experience</h3>
-        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+        <h3 id="work-experience" className="mb-5 text-lg font-medium">
+          Work Experience
+        </h3>
+        <hr className="mb-5 border-zinc-300 dark:border-zinc-600" />
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
             <a
@@ -417,8 +425,8 @@ export default function Personal() {
                     {job.start} - {job.end}
                   </p>
                 </div>
-                <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
-                <ul className="list-disc pl-5 mt-2 space-y-1 text-zinc-500 dark:text-zinc-400">
+                <hr className="mb-5 border-zinc-300 dark:border-zinc-600" />
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-500 dark:text-zinc-400">
                   {job.description.map((description) => (
                     <li key={description}>{description}</li>
                   ))}
@@ -433,8 +441,10 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 id="skills" className="mb-3 text-lg font-medium">Skills</h3>
-        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+        <h3 id="skills" className="mb-3 text-lg font-medium">
+          Skills
+        </h3>
+        <hr className="mb-5 border-zinc-300 dark:border-zinc-600" />
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
@@ -470,8 +480,10 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 id="connect" className="mb-5 text-lg font-medium">Connect</h3>
-        <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+        <h3 id="connect" className="mb-5 text-lg font-medium">
+          Connect
+        </h3>
+        <hr className="mb-5 border-zinc-300 dark:border-zinc-600" />
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
           Feel free to contact me at{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>

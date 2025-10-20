@@ -36,27 +36,30 @@ type ProjectMediaProps = {
 }
 
 function ProjectMedia({ video, images }: ProjectMediaProps) {
-  const isValidVideo = video && 
-    video !== 'https://www.google.com/' && 
+  const isValidVideo =
+    video &&
+    video !== 'https://www.google.com/' &&
     video.trim() !== '' &&
-    (video.startsWith('http') || video.startsWith('/') || video.startsWith('video/'))
+    (video.startsWith('http') ||
+      video.startsWith('/') ||
+      video.startsWith('video/'))
 
-  const isValidImage = images && 
-    images.length > 0 && 
-    images[0] !== 'https://www.google.com/' && 
+  const isValidImage =
+    images &&
+    images.length > 0 &&
+    images[0] !== 'https://www.google.com/' &&
     images[0].trim() !== ''
 
-  const isYouTubeVideo = isValidVideo && (
-    video.includes('youtube.com') || 
-    video.includes('youtu.be')
-  )
+  const isYouTubeVideo =
+    isValidVideo &&
+    (video.includes('youtube.com') || video.includes('youtu.be'))
 
-  const isLocalVideo = isValidVideo && (
-    video.startsWith('video/') || 
-    video.endsWith('.mp4') || 
-    video.endsWith('.webm') || 
-    video.endsWith('.mov')
-  )
+  const isLocalVideo =
+    isValidVideo &&
+    (video.startsWith('video/') ||
+      video.endsWith('.mp4') ||
+      video.endsWith('.webm') ||
+      video.endsWith('.mov'))
 
   if (isYouTubeVideo) {
     return (
@@ -229,8 +232,10 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
   }
 
   return (
-    <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-      <span className="text-zinc-500 dark:text-zinc-400">No media available</span>
+    <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-200 dark:bg-zinc-800">
+      <span className="text-zinc-500 dark:text-zinc-400">
+        No media available
+      </span>
     </div>
   )
 }
@@ -243,65 +248,71 @@ export default function ProjectsPage() {
 
   // Get all unique years, skills, tools, languages
   const years = useMemo(() => {
-    const uniqueYears = [...new Set(PROJECTS.map(project => project.year))].sort((a, b) => b - a)
+    const uniqueYears = [
+      ...new Set(PROJECTS.map((project) => project.year)),
+    ].sort((a, b) => b - a)
     return uniqueYears
   }, [])
 
   const allSkills = useMemo(() => {
-    const uniqueSkills = [...new Set(PROJECTS.flatMap(project => project.skills ?? []))].sort()
+    const uniqueSkills = [
+      ...new Set(PROJECTS.flatMap((project) => project.skills ?? [])),
+    ].sort()
     return uniqueSkills
   }, [])
 
   const allTools = useMemo(() => {
-    const uniqueTools = [...new Set(PROJECTS.flatMap(project => project.tools ?? []))].sort()
+    const uniqueTools = [
+      ...new Set(PROJECTS.flatMap((project) => project.tools ?? [])),
+    ].sort()
     return uniqueTools
   }, [])
 
   const allLanguages = useMemo(() => {
-    const uniqueLangs = [...new Set(PROJECTS.flatMap(project => project.language ?? []))].sort()
+    const uniqueLangs = [
+      ...new Set(PROJECTS.flatMap((project) => project.language ?? [])),
+    ].sort()
     return uniqueLangs
   }, [])
 
   // Filter projects based on selected filters
   const filteredProjects = useMemo(() => {
-    return PROJECTS.filter(project => {
-      const yearMatch = selectedYear === 'all' || project.year.toString() === selectedYear
+    return PROJECTS.filter((project) => {
+      const yearMatch =
+        selectedYear === 'all' || project.year.toString() === selectedYear
       const skills = project.skills ?? []
       const tools = project.tools ?? []
       const languages = project.language ?? []
 
-      const skillMatch = selectedSkills.length === 0 || 
-        selectedSkills.some(skill => skills.includes(skill))
-      const toolMatch = selectedTools.length === 0 ||
-        selectedTools.some(tool => tools.includes(tool))
-      const languageMatch = selectedLanguages.length === 0 ||
-        selectedLanguages.some(lang => languages.includes(lang))
+      const skillMatch =
+        selectedSkills.length === 0 ||
+        selectedSkills.some((skill) => skills.includes(skill))
+      const toolMatch =
+        selectedTools.length === 0 ||
+        selectedTools.some((tool) => tools.includes(tool))
+      const languageMatch =
+        selectedLanguages.length === 0 ||
+        selectedLanguages.some((lang) => languages.includes(lang))
 
       return yearMatch && skillMatch && toolMatch && languageMatch
     })
   }, [selectedYear, selectedSkills, selectedTools, selectedLanguages])
 
   const toggleSkill = (skill: string) => {
-    setSelectedSkills(prev => 
-      prev.includes(skill) 
-        ? prev.filter(s => s !== skill)
-        : [...prev, skill]
+    setSelectedSkills((prev) =>
+      prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill],
     )
   }
 
   const toggleTool = (tool: string) => {
-    setSelectedTools(prev =>
-      prev.includes(tool)
-        ? prev.filter(t => t !== tool)
-        : [...prev, tool]
+    setSelectedTools((prev) =>
+      prev.includes(tool) ? prev.filter((t) => t !== tool) : [...prev, tool],
     )
   }
 
   const toggleLanguage = (lang: string) => {
-    setSelectedLanguages(prev =>
-      prev.includes(lang)
-        ? prev.filter(l => l !== lang)
-        : [...prev, lang]
+    setSelectedLanguages((prev) =>
+      prev.includes(lang) ? prev.filter((l) => l !== lang) : [...prev, lang],
     )
   }
 
@@ -317,14 +328,14 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors mb-4"
+          <Link
+            href="/"
+            className="mb-4 inline-flex items-center gap-2 text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Portfolio
           </Link>
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+          <h1 className="mb-2 text-3xl font-bold text-zinc-900 dark:text-zinc-100">
             All Projects
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400">
@@ -333,16 +344,19 @@ export default function ProjectsPage() {
         </div>
 
         {/* Filters */}
-        <div className="mb-8 p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 ring-1 ring-zinc-200/50 dark:ring-zinc-800/50">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="mb-8 rounded-2xl bg-zinc-50 p-6 ring-1 ring-zinc-200/50 dark:bg-zinc-900/50 dark:ring-zinc-800/50">
+          <div className="mb-4 flex items-center gap-2">
             <Filter className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
             <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
               Filters
             </h2>
-            {(selectedYear !== 'all' || selectedSkills.length > 0 || selectedTools.length > 0 || selectedLanguages.length > 0) && (
+            {(selectedYear !== 'all' ||
+              selectedSkills.length > 0 ||
+              selectedTools.length > 0 ||
+              selectedLanguages.length > 0) && (
               <button
                 onClick={clearFilters}
-                className="ml-auto text-sm text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors"
+                className="ml-auto text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
               >
                 Clear all
               </button>
@@ -351,13 +365,13 @@ export default function ProjectsPage() {
 
           {/* Year Filter */}
           <div className="mb-4">
-            <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Year
             </h3>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedYear('all')}
-                className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                className={`rounded-full px-3 py-1 text-sm transition-colors ${
                   selectedYear === 'all'
                     ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
                     : 'bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
@@ -365,11 +379,11 @@ export default function ProjectsPage() {
               >
                 All Years
               </button>
-              {years.map(year => (
+              {years.map((year) => (
                 <button
                   key={year}
                   onClick={() => setSelectedYear(year.toString())}
-                  className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  className={`rounded-full px-3 py-1 text-sm transition-colors ${
                     selectedYear === year.toString()
                       ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
                       : 'bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
@@ -383,15 +397,15 @@ export default function ProjectsPage() {
 
           {/* Skills Filter */}
           <div>
-            <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Skills
             </h3>
             <div className="flex flex-wrap gap-2">
-              {allSkills.map(skill => (
+              {allSkills.map((skill) => (
                 <button
                   key={skill}
                   onClick={() => toggleSkill(skill)}
-                  className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  className={`rounded-full px-3 py-1 text-sm transition-colors ${
                     selectedSkills.includes(skill)
                       ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
                       : 'bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
@@ -405,15 +419,15 @@ export default function ProjectsPage() {
 
           {/* Tools Filter */}
           <div className="mt-4">
-            <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Tools
             </h3>
             <div className="flex flex-wrap gap-2">
-              {allTools.map(tool => (
+              {allTools.map((tool) => (
                 <button
                   key={tool}
                   onClick={() => toggleTool(tool)}
-                  className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  className={`rounded-full px-3 py-1 text-sm transition-colors ${
                     selectedTools.includes(tool)
                       ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
                       : 'bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
@@ -427,15 +441,15 @@ export default function ProjectsPage() {
 
           {/* Languages Filter */}
           <div className="mt-4">
-            <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Languages
             </h3>
             <div className="flex flex-wrap gap-2">
-              {allLanguages.map(lang => (
+              {allLanguages.map((lang) => (
                 <button
                   key={lang}
                   onClick={() => toggleLanguage(lang)}
-                  className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  className={`rounded-full px-3 py-1 text-sm transition-colors ${
                     selectedLanguages.includes(lang)
                       ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
                       : 'bg-zinc-200 text-zinc-700 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
@@ -451,7 +465,8 @@ export default function ProjectsPage() {
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Showing {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''}
+            Showing {filteredProjects.length} project
+            {filteredProjects.length !== 1 ? 's' : ''}
           </p>
         </div>
 
@@ -473,45 +488,45 @@ export default function ProjectsPage() {
               </div>
               <div className="px-1">
                 <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50 mb-2"
+                  className="font-base group relative mb-2 inline-block font-[450] text-zinc-900 dark:text-zinc-50"
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
                 </a>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
+                <p className="mb-3 text-sm text-zinc-600 dark:text-zinc-400">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-1 mb-2">
+                <div className="mb-2 flex flex-wrap gap-1">
                   {(project.skills ?? []).map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full"
+                      className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
-                {(project.tools && project.tools.length > 0) && (
-                  <div className="flex flex-wrap gap-1 mb-2">
+                {project.tools && project.tools.length > 0 && (
+                  <div className="mb-2 flex flex-wrap gap-1">
                     {project.tools.map((tool) => (
                       <span
                         key={tool}
-                        className="px-2 py-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full"
+                        className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                       >
                         {tool}
                       </span>
                     ))}
                   </div>
                 )}
-                {(project.language && project.language.length > 0) && (
-                  <div className="flex flex-wrap gap-1 mb-2">
+                {project.language && project.language.length > 0 && (
+                  <div className="mb-2 flex flex-wrap gap-1">
                     {project.language.map((lang) => (
                       <span
                         key={lang}
-                        className="px-2 py-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full"
+                        className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
                       >
                         {lang}
                       </span>
@@ -528,13 +543,13 @@ export default function ProjectsPage() {
 
         {/* No Results */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12">
+          <div className="py-12 text-center">
             <p className="text-zinc-500 dark:text-zinc-400">
               No projects found matching your filters.
             </p>
             <button
               onClick={clearFilters}
-              className="mt-4 text-zinc-600 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors"
+              className="mt-4 text-zinc-600 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
             >
               Clear filters
             </button>

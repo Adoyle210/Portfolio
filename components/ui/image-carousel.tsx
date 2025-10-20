@@ -9,7 +9,10 @@ type ImageCarouselProps = {
   alt?: string
 }
 
-export function ImageCarousel({ images, alt = "Project images" }: ImageCarouselProps) {
+export function ImageCarousel({
+  images,
+  alt = 'Project images',
+}: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const nextImage = () => {
@@ -51,14 +54,14 @@ export function ImageCarousel({ images, alt = "Project images" }: ImageCarouselP
           <>
             <button
               onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70"
+              className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70"
+              className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70"
               aria-label="Next image"
             >
               <ChevronRight className="h-4 w-4" />
@@ -76,12 +79,12 @@ export function ImageCarousel({ images, alt = "Project images" }: ImageCarouselP
 
       {/* Thumbnail navigation */}
       {images.length > 1 && (
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 p-2">
+        <div className="absolute right-0 bottom-0 left-0 flex justify-center gap-2 p-2">
           {images.map((image, index) => (
             <button
               key={index}
               onClick={() => goToImage(index)}
-              className={`h-12 w-12 rounded-lg overflow-hidden transition-all ${
+              className={`h-12 w-12 overflow-hidden rounded-lg transition-all ${
                 index === currentIndex
                   ? 'ring-2 ring-white ring-offset-2 ring-offset-black'
                   : 'opacity-60 hover:opacity-80'

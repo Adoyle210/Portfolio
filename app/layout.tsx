@@ -14,14 +14,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://doyle-alexis.vercel.app/'),
   alternates: {
-    canonical: '/'
+    canonical: '/',
   },
   title: {
     default: 'Alexis Doyle | Portfolio',
-    template: '%s | Doyle'
+    template: '%s | Doyle',
   },
-  description:  'Alexis M. Doyle is a software engineer with a passion for building innovative solutions.',
-};
+  description:
+    'Alexis M. Doyle is a software engineer with a passion for building innovative solutions.',
+}
 
 const geist = Geist({
   variable: '--font-geist',

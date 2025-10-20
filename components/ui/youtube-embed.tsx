@@ -9,21 +9,24 @@ type YouTubeEmbedProps = {
   title?: string
 }
 
-export function YouTubeEmbed({ videoId, title = "YouTube video" }: YouTubeEmbedProps) {
+export function YouTubeEmbed({
+  videoId,
+  title = 'YouTube video',
+}: YouTubeEmbedProps) {
   const [isPlaying, setIsPlaying] = useState(false)
 
   // Extract video ID from various YouTube URL formats
   const extractVideoId = (url: string): string => {
     const patterns = [
       /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-      /youtube\.com\/watch\?.*v=([^&\n?#]+)/
+      /youtube\.com\/watch\?.*v=([^&\n?#]+)/,
     ]
-    
+
     for (const pattern of patterns) {
       const match = url.match(pattern)
       if (match) return match[1]
     }
-    
+
     return url // Return as-is if no pattern matches (might already be just the ID)
   }
 
@@ -31,8 +34,10 @@ export function YouTubeEmbed({ videoId, title = "YouTube video" }: YouTubeEmbedP
 
   if (!cleanVideoId) {
     return (
-      <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-        <span className="text-zinc-500 dark:text-zinc-400">Invalid YouTube URL</span>
+      <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-200 dark:bg-zinc-800">
+        <span className="text-zinc-500 dark:text-zinc-400">
+          Invalid YouTube URL
+        </span>
       </div>
     )
   }
@@ -41,10 +46,10 @@ export function YouTubeEmbed({ videoId, title = "YouTube video" }: YouTubeEmbedP
   const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}?autoplay=1&rel=0`
 
   return (
-    <div className="aspect-video w-full rounded-xl overflow-hidden relative group">
+    <div className="group relative aspect-video w-full overflow-hidden rounded-xl">
       {!isPlaying ? (
         // Thumbnail with play button
-        <div 
+        <div
           className="relative h-full w-full cursor-pointer"
           onClick={() => setIsPlaying(true)}
         >
@@ -53,19 +58,23 @@ export function YouTubeEmbed({ videoId, title = "YouTube video" }: YouTubeEmbedP
             alt={title}
             className="h-full w-full object-cover"
             onError={(e) => {
-              console.error('YouTube thumbnail failed to load:', thumbnailUrl, e)
+              console.error(
+                'YouTube thumbnail failed to load:',
+                thumbnailUrl,
+                e,
+              )
             }}
           />
-          
+
           {/* Play button overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-            <div className="rounded-full bg-red-600 p-4 group-hover:scale-110 transition-transform">
-              <Play className="h-8 w-8 text-white ml-1" fill="currentColor" />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
+            <div className="rounded-full bg-red-600 p-4 transition-transform group-hover:scale-110">
+              <Play className="ml-1 h-8 w-8 text-white" fill="currentColor" />
             </div>
           </div>
 
           {/* YouTube logo */}
-          <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-1 rounded text-white text-xs">
+          <div className="absolute right-2 bottom-2 rounded bg-black/70 px-2 py-1 text-xs text-white">
             YouTube
           </div>
         </div>

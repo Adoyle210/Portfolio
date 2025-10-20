@@ -73,7 +73,10 @@ export function Footer() {
         <a href="https://github.com/Adoyle210/portfolio" target="_blank">
           <TextLoop className="text-xs text-zinc-500">
             <span>© 2025 Alexis M. Doyle.</span>
-            <span>Built with Motion-Primitives & <HeartIcon className="h-3 w-3 inline" /></span>
+            <span>
+              Built with Motion-Primitives &{' '}
+              <HeartIcon className="inline h-3 w-3" />
+            </span>
           </TextLoop>
         </a>
         {/* <div className="text-xs text-zinc-400">
