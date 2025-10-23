@@ -59,7 +59,7 @@ export const PROJECTS: Project[] = [
     skills: [ '3D Modeling', 'Animation'],
     tools: ['Blender'],
     year: 2025,
-    pinned: true,
+    pinned: false,
     id: 'project-animating-cooking-in-blender',
   },
   {
