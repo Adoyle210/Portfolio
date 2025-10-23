@@ -2,18 +2,18 @@
 
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import { SunIcon, MoonIcon, MonitorIcon } from 'lucide-react' // Adjust the icon import path
+import { SunIcon, MoonIcon } from 'lucide-react' // MonitorIcon // Adjust the icon import path
 import { cn } from '@/lib/utils'
 import {
   motion,
   AnimatePresence,
   Transition,
   Variants,
-  AnimatePresenceProps,
+  /* AnimatePresenceProps,*/
 } from 'motion/react'
 
 // Define a union type for the possible themes returned by the hook
-type ThemeOption = 'light' | 'dark' | 'system'
+//type ThemeOption = 'light' | 'dark' | 'system'
 
 export function ThemeSwitch() {
   const [mounted, setMounted] = useState<boolean>(false)
@@ -52,20 +52,23 @@ export function ThemeSwitch() {
       className={cn(
         'inline-flex h-7 w-7 items-center justify-center rounded-lg text-zinc-500 transition-colors duration-100 focus-visible:outline-2 dark:text-zinc-400',
       )}
-      type="button"
+      type='button'
       aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} theme`}
       onClick={toggleTheme}
     >
-      <AnimatePresence mode="popLayout" initial={false}>
+      <AnimatePresence
+        mode='popLayout'
+        initial={false}
+      >
         <motion.div
           key={isDarkMode ? 'dark' : 'light'}
-          initial="initial"
-          animate="animate"
-          exit="exit"
+          initial='initial'
+          animate='animate'
+          exit='exit'
           transition={transition}
           variants={motionVariants}
         >
-          <IconToDisplay className="h-4 w-4" />
+          <IconToDisplay className='h-4 w-4' />
         </motion.div>
       </AnimatePresence>
     </button>

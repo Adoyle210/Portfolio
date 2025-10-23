@@ -55,17 +55,24 @@ export function TextMorph({
   }
 
   return (
-    <Component className={cn(className)} aria-label={children} style={style}>
-      <AnimatePresence mode="popLayout" initial={false}>
+    <Component
+      className={cn(className)}
+      aria-label={children}
+      style={style}
+    >
+      <AnimatePresence
+        mode='popLayout'
+        initial={false}
+      >
         {characters.map((character) => (
           <motion.span
             key={character.id}
             layoutId={character.id}
-            className="inline-block"
-            aria-hidden="true"
-            initial="initial"
-            animate="animate"
-            exit="exit"
+            className='inline-block'
+            aria-hidden='true'
+            initial='initial'
+            animate='animate'
+            exit='exit'
             variants={variants || defaultVariants}
             transition={transition || defaultTransition}
           >

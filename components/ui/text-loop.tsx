@@ -55,12 +55,15 @@ export function TextLoop({
 
   return (
     <div className={cn('relative inline-block whitespace-nowrap', className)}>
-      <AnimatePresence mode={mode} initial={false}>
+      <AnimatePresence
+        mode={mode}
+        initial={false}
+      >
         <motion.div
           key={currentIndex}
-          initial="initial"
-          animate="animate"
-          exit="exit"
+          initial='initial'
+          animate='animate'
+          exit='exit'
           transition={transition}
           variants={variants || motionVariants}
         >

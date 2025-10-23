@@ -16,14 +16,23 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     }) => {
       return (
         <figure>
-          <img src={src} alt={alt} className="rounded-xl" />
-          <figcaption className="text-center">{caption}</figcaption>
+          <img
+            src={src}
+            alt={alt}
+            className='rounded-xl'
+          />
+          <figcaption className='text-center'>{caption}</figcaption>
         </figure>
       )
     },
     code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
       const codeHTML = highlight(children as string)
-      return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+      return (
+        <code
+          dangerouslySetInnerHTML={{ __html: codeHTML }}
+          {...props}
+        />
+      )
     },
   }
 }

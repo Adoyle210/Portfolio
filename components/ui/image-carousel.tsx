@@ -30,15 +30,15 @@ export function ImageCarousel({
   if (images.length === 0) return null
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+    <div className='relative aspect-video w-full overflow-hidden rounded-xl'>
       {/* Main image display */}
-      <div className="relative h-full w-full">
-        <AnimatePresence mode="wait">
+      <div className='relative h-full w-full'>
+        <AnimatePresence mode='wait'>
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
             alt={`${alt} ${currentIndex + 1}`}
-            className="h-full w-full object-cover"
+            className='h-full w-full object-cover'
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -54,24 +54,24 @@ export function ImageCarousel({
           <>
             <button
               onClick={prevImage}
-              className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70"
-              aria-label="Previous image"
+              className='absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70'
+              aria-label='Previous image'
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className='h-4 w-4' />
             </button>
             <button
               onClick={nextImage}
-              className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70"
-              aria-label="Next image"
+              className='absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70'
+              aria-label='Next image'
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className='h-4 w-4' />
             </button>
           </>
         )}
 
         {/* Image counter */}
         {images.length > 1 && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-sm text-white">
+          <div className='absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-sm text-white'>
             {currentIndex + 1} / {images.length}
           </div>
         )}
@@ -79,7 +79,7 @@ export function ImageCarousel({
 
       {/* Thumbnail navigation */}
       {images.length > 1 && (
-        <div className="absolute right-0 bottom-0 left-0 flex justify-center gap-2 p-2">
+        <div className='absolute right-0 bottom-0 left-0 flex justify-center gap-2 p-2'>
           {images.map((image, index) => (
             <button
               key={index}
@@ -93,7 +93,7 @@ export function ImageCarousel({
               <img
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
-                className="h-full w-full object-cover"
+                className='h-full w-full object-cover'
                 onError={(e) => {
                   console.error('Thumbnail failed to load:', image, e)
                 }}

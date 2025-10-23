@@ -74,11 +74,11 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
           <YouTubeEmbed videoId={video} />
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+          <MorphingDialogContent className='relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50'>
             <YouTubeEmbed videoId={video} />
           </MorphingDialogContent>
           <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
+            className='fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1'
             variants={{
               initial: { opacity: 0 },
               animate: {
@@ -88,7 +88,7 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
               exit: { opacity: 0, transition: { duration: 0 } },
             }}
           >
-            <X className="h-5 w-5 text-zinc-500" />
+            <X className='h-5 w-5 text-zinc-500' />
           </MorphingDialogClose>
         </MorphingDialogContainer>
       </MorphingDialog>
@@ -111,28 +111,28 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
             loop
             muted
             playsInline
-            className="aspect-video w-full cursor-zoom-in rounded-xl"
+            className='aspect-video w-full cursor-zoom-in rounded-xl'
             onError={(e) => {
               console.error('Video failed to load:', video, e)
             }}
           />
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+          <MorphingDialogContent className='relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50'>
             <video
               src={video}
               autoPlay
               loop
               muted
               playsInline
-              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+              className='aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]'
               onError={(e) => {
                 console.error('Video failed to load in dialog:', video, e)
               }}
             />
           </MorphingDialogContent>
           <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
+            className='fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1'
             variants={{
               initial: { opacity: 0 },
               animate: {
@@ -142,7 +142,7 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
               exit: { opacity: 0, transition: { duration: 0 } },
             }}
           >
-            <X className="h-5 w-5 text-zinc-500" />
+            <X className='h-5 w-5 text-zinc-500' />
           </MorphingDialogClose>
         </MorphingDialogContainer>
       </MorphingDialog>
@@ -162,11 +162,11 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
           <ImageCarousel images={images} />
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+          <MorphingDialogContent className='relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50'>
             <ImageCarousel images={images} />
           </MorphingDialogContent>
           <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
+            className='fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1'
             variants={{
               initial: { opacity: 0 },
               animate: {
@@ -176,7 +176,7 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
               exit: { opacity: 0, transition: { duration: 0 } },
             }}
           >
-            <X className="h-5 w-5 text-zinc-500" />
+            <X className='h-5 w-5 text-zinc-500' />
           </MorphingDialogClose>
         </MorphingDialogContainer>
       </MorphingDialog>
@@ -195,26 +195,26 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
         <MorphingDialogTrigger>
           <img
             src={images[0]}
-            alt="Project preview"
-            className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
+            alt='Project preview'
+            className='aspect-video w-full cursor-zoom-in rounded-xl object-cover'
             onError={(e) => {
               console.error('Image failed to load:', images[0], e)
             }}
           />
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+          <MorphingDialogContent className='relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50'>
             <img
               src={images[0]}
-              alt="Project preview"
-              className="aspect-video h-[50vh] w-full rounded-xl object-cover md:h-[70vh]"
+              alt='Project preview'
+              className='aspect-video h-[50vh] w-full rounded-xl object-cover md:h-[70vh]'
               onError={(e) => {
                 console.error('Image failed to load in dialog:', images[0], e)
               }}
             />
           </MorphingDialogContent>
           <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
+            className='fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1'
             variants={{
               initial: { opacity: 0 },
               animate: {
@@ -224,7 +224,7 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
               exit: { opacity: 0, transition: { duration: 0 } },
             }}
           >
-            <X className="h-5 w-5 text-zinc-500" />
+            <X className='h-5 w-5 text-zinc-500' />
           </MorphingDialogClose>
         </MorphingDialogContainer>
       </MorphingDialog>
@@ -232,8 +232,8 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
   }
 
   return (
-    <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-200 dark:bg-zinc-800">
-      <span className="text-zinc-500 dark:text-zinc-400">
+    <div className='flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-200 dark:bg-zinc-800'>
+      <span className='text-zinc-500 dark:text-zinc-400'>
         No media available
       </span>
     </div>
@@ -324,30 +324,30 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950">
-      <div className="container mx-auto px-4 py-8">
+    <div className='min-h-screen bg-white dark:bg-zinc-950'>
+      <div className='container mx-auto px-4 py-8'>
         {/* Header */}
-        <div className="mb-8">
+        <div className='mb-8'>
           <Link
-            href="/"
-            className="mb-4 inline-flex items-center gap-2 text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+            href='/'
+            className='mb-4 inline-flex items-center gap-2 text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className='h-4 w-4' />
             Back to Portfolio
           </Link>
-          <h1 className="mb-2 text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+          <h1 className='mb-2 text-3xl font-bold text-zinc-900 dark:text-zinc-100'>
             All Projects
           </h1>
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <p className='text-zinc-600 dark:text-zinc-400'>
             Explore all my projects with filtering options
           </p>
         </div>
 
         {/* Filters */}
-        <div className="mb-8 rounded-2xl bg-zinc-50 p-6 ring-1 ring-zinc-200/50 dark:bg-zinc-900/50 dark:ring-zinc-800/50">
-          <div className="mb-4 flex items-center gap-2">
-            <Filter className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+        <div className='mb-8 rounded-2xl bg-zinc-50 p-6 ring-1 ring-zinc-200/50 dark:bg-zinc-900/50 dark:ring-zinc-800/50'>
+          <div className='mb-4 flex items-center gap-2'>
+            <Filter className='h-5 w-5 text-zinc-600 dark:text-zinc-400' />
+            <h2 className='text-lg font-semibold text-zinc-900 dark:text-zinc-100'>
               Filters
             </h2>
             {(selectedYear !== 'all' ||
@@ -356,7 +356,7 @@ export default function ProjectsPage() {
               selectedLanguages.length > 0) && (
               <button
                 onClick={clearFilters}
-                className="ml-auto text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+                className='ml-auto text-sm text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200'
               >
                 Clear all
               </button>
@@ -364,11 +364,11 @@ export default function ProjectsPage() {
           </div>
 
           {/* Year Filter */}
-          <div className="mb-4">
-            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <div className='mb-4'>
+            <h3 className='mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300'>
               Year
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className='flex flex-wrap gap-2'>
               <button
                 onClick={() => setSelectedYear('all')}
                 className={`rounded-full px-3 py-1 text-sm transition-colors ${
@@ -397,10 +397,10 @@ export default function ProjectsPage() {
 
           {/* Skills Filter */}
           <div>
-            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <h3 className='mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300'>
               Skills
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className='flex flex-wrap gap-2'>
               {allSkills.map((skill) => (
                 <button
                   key={skill}
@@ -418,11 +418,11 @@ export default function ProjectsPage() {
           </div>
 
           {/* Tools Filter */}
-          <div className="mt-4">
-            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <div className='mt-4'>
+            <h3 className='mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300'>
               Tools
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className='flex flex-wrap gap-2'>
               {allTools.map((tool) => (
                 <button
                   key={tool}
@@ -440,11 +440,11 @@ export default function ProjectsPage() {
           </div>
 
           {/* Languages Filter */}
-          <div className="mt-4">
-            <h3 className="mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <div className='mt-4'>
+            <h3 className='mb-2 text-sm font-medium text-zinc-700 dark:text-zinc-300'>
               Languages
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className='flex flex-wrap gap-2'>
               {allLanguages.map((lang) => (
                 <button
                   key={lang}
@@ -463,8 +463,8 @@ export default function ProjectsPage() {
         </div>
 
         {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-zinc-600 dark:text-zinc-400">
+        <div className='mb-6'>
+          <p className='text-zinc-600 dark:text-zinc-400'>
             Showing {filteredProjects.length} project
             {filteredProjects.length !== 1 ? 's' : ''}
           </p>
@@ -472,49 +472,52 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         <motion.div
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'
           variants={VARIANTS_CONTAINER}
-          initial="hidden"
-          animate="visible"
+          initial='hidden'
+          animate='visible'
         >
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
               variants={VARIANTS_PROJECT}
-              className="space-y-3"
+              className='space-y-3'
             >
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectMedia video={project.video} images={project.image} />
+              <div className='relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50'>
+                <ProjectMedia
+                  video={project.video}
+                  images={project.image}
+                />
               </div>
-              <div className="px-1">
+              <div className='px-1'>
                 <a
-                  className="font-base group relative mb-2 inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  className='font-base group relative mb-2 inline-block font-[450] text-zinc-900 dark:text-zinc-50'
                   href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
+                  <span className='absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50'></span>
                 </a>
-                <p className="mb-3 text-sm text-zinc-600 dark:text-zinc-400">
+                <p className='mb-3 text-sm text-zinc-600 dark:text-zinc-400'>
                   {project.description}
                 </p>
-                <div className="mb-2 flex flex-wrap gap-1">
+                <div className='mb-2 flex flex-wrap gap-1'>
                   {(project.skills ?? []).map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                      className='rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
                 {project.tools && project.tools.length > 0 && (
-                  <div className="mb-2 flex flex-wrap gap-1">
+                  <div className='mb-2 flex flex-wrap gap-1'>
                     {project.tools.map((tool) => (
                       <span
                         key={tool}
-                        className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                        className='rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
                       >
                         {tool}
                       </span>
@@ -522,18 +525,18 @@ export default function ProjectsPage() {
                   </div>
                 )}
                 {project.language && project.language.length > 0 && (
-                  <div className="mb-2 flex flex-wrap gap-1">
+                  <div className='mb-2 flex flex-wrap gap-1'>
                     {project.language.map((lang) => (
                       <span
                         key={lang}
-                        className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                        className='rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
                       >
                         {lang}
                       </span>
                     ))}
                   </div>
                 )}
-                <p className="text-xs text-zinc-500 dark:text-zinc-500">
+                <p className='text-xs text-zinc-500 dark:text-zinc-500'>
                   {project.year}
                 </p>
               </div>
@@ -543,13 +546,13 @@ export default function ProjectsPage() {
 
         {/* No Results */}
         {filteredProjects.length === 0 && (
-          <div className="py-12 text-center">
-            <p className="text-zinc-500 dark:text-zinc-400">
+          <div className='py-12 text-center'>
+            <p className='text-zinc-500 dark:text-zinc-400'>
               No projects found matching your filters.
             </p>
             <button
               onClick={clearFilters}
-              className="mt-4 text-zinc-600 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
+              className='mt-4 text-zinc-600 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200'
             >
               Clear filters
             </button>

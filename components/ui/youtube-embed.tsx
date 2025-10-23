@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'motion/react'
+//import { motion } from 'motion/react'
 import { Play } from 'lucide-react'
 
 type YouTubeEmbedProps = {
@@ -34,8 +34,8 @@ export function YouTubeEmbed({
 
   if (!cleanVideoId) {
     return (
-      <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-200 dark:bg-zinc-800">
-        <span className="text-zinc-500 dark:text-zinc-400">
+      <div className='flex aspect-video w-full items-center justify-center rounded-xl bg-zinc-200 dark:bg-zinc-800'>
+        <span className='text-zinc-500 dark:text-zinc-400'>
           Invalid YouTube URL
         </span>
       </div>
@@ -46,17 +46,17 @@ export function YouTubeEmbed({
   const embedUrl = `https://www.youtube.com/embed/${cleanVideoId}?autoplay=1&rel=0`
 
   return (
-    <div className="group relative aspect-video w-full overflow-hidden rounded-xl">
+    <div className='group relative aspect-video w-full overflow-hidden rounded-xl'>
       {!isPlaying ? (
         // Thumbnail with play button
         <div
-          className="relative h-full w-full cursor-pointer"
+          className='relative h-full w-full cursor-pointer'
           onClick={() => setIsPlaying(true)}
         >
           <img
             src={thumbnailUrl}
             alt={title}
-            className="h-full w-full object-cover"
+            className='h-full w-full object-cover'
             onError={(e) => {
               console.error(
                 'YouTube thumbnail failed to load:',
@@ -67,14 +67,17 @@ export function YouTubeEmbed({
           />
 
           {/* Play button overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
-            <div className="rounded-full bg-red-600 p-4 transition-transform group-hover:scale-110">
-              <Play className="ml-1 h-8 w-8 text-white" fill="currentColor" />
+          <div className='absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30'>
+            <div className='rounded-full bg-red-600 p-4 transition-transform group-hover:scale-110'>
+              <Play
+                className='ml-1 h-8 w-8 text-white'
+                fill='currentColor'
+              />
             </div>
           </div>
 
           {/* YouTube logo */}
-          <div className="absolute right-2 bottom-2 rounded bg-black/70 px-2 py-1 text-xs text-white">
+          <div className='absolute right-2 bottom-2 rounded bg-black/70 px-2 py-1 text-xs text-white'>
             YouTube
           </div>
         </div>
@@ -83,9 +86,9 @@ export function YouTubeEmbed({
         <iframe
           src={embedUrl}
           title={title}
-          className="h-full w-full"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          className='h-full w-full'
+          frameBorder='0'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen
         />
       )}
