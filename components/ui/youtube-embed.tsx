@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Play } from 'lucide-react'
 
 type YouTubeEmbedProps = {
@@ -47,10 +48,11 @@ export function YouTubeEmbed({ videoId, title = "YouTube video" }: YouTubeEmbedP
           className="relative h-full w-full cursor-pointer"
           onClick={() => setIsPlaying(true)}
         >
-          <img
+          <Image
             src={thumbnailUrl}
             alt={title}
-            className="h-full w-full object-cover"
+            fill
+            className="object-cover"
             onError={(e) => {
               console.error('YouTube thumbnail failed to load:', thumbnailUrl, e)
             }}

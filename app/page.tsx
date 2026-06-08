@@ -14,7 +14,9 @@ import {
 import { ImageCarousel } from '@/components/ui/image-carousel'
 import { YouTubeEmbed } from '@/components/ui/youtube-embed'
 import Link from 'next/link'
+import Image from 'next/image'
 import { AnimatedBackground } from '@/components/ui/animated-background'
+import { publicImageSrc } from '@/lib/utils'
 
 /* Data */
 import { PROJECTS } from './data/project'
@@ -212,25 +214,31 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
         }}
       >
         <MorphingDialogTrigger>
-          <img
-            src={images[0]}
-            alt="Project preview"
-            className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
-            onError={(e) => {
-              console.error('Image failed to load:', images[0], e)
-            }}
-          />
+          <div className="relative aspect-video w-full">
+            <Image
+              src={publicImageSrc(images[0])}
+              alt="Project preview"
+              fill
+              className="cursor-zoom-in rounded-xl object-cover"
+              onError={(e) => {
+                console.error('Image failed to load:', images[0], e)
+              }}
+            />
+          </div>
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
           <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <img
-              src={images[0]}
-              alt="Project preview"
-              className="aspect-video h-[50vh] w-full rounded-xl object-cover md:h-[70vh]"
-              onError={(e) => {
-                console.error('Image failed to load in dialog:', images[0], e)
-              }}
-            />
+            <div className="relative aspect-video h-[50vh] w-full md:h-[70vh]">
+              <Image
+                src={publicImageSrc(images[0])}
+                alt="Project preview"
+                fill
+                className="rounded-xl object-cover"
+                onError={(e) => {
+                  console.error('Image failed to load in dialog:', images[0], e)
+                }}
+              />
+            </div>
           </MorphingDialogContent>
           <MorphingDialogClose
             className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"

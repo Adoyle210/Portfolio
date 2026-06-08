@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { publicImageSrc } from '@/lib/utils'
 
 type ImageCarouselProps = {
   images: string[]
@@ -87,9 +89,11 @@ export function ImageCarousel({ images, alt = "Project images" }: ImageCarouselP
                   : 'opacity-60 hover:opacity-80'
               }`}
             >
-              <img
-                src={image}
+              <Image
+                src={publicImageSrc(image)}
                 alt={`Thumbnail ${index + 1}`}
+                width={48}
+                height={48}
                 className="h-full w-full object-cover"
                 onError={(e) => {
                   console.error('Thumbnail failed to load:', image, e)
