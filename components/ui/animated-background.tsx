@@ -4,12 +4,23 @@ import { AnimatePresence, Transition, motion } from 'motion/react'
 import {
   Children,
   cloneElement,
+  isValidElement,
   ReactElement,
   ReactNode,
   useEffect,
   useState,
   useId,
 } from 'react'
+
+type AnimatedChild = ReactElement<{
+  'data-id': string
+  'data-checked'?: string
+  className?: string
+  children?: ReactNode
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
+  onClick?: () => void
+}>
 
 export type AnimatedBackgroundProps = {
   children: ReactNode
@@ -45,8 +56,13 @@ export function AnimatedBackground({
     }
   }, [defaultValue])
 
-  return Children.map(children, (child: any, index) => {
-    const id = child.props['data-id']
+  return Children.map(children, (child, index) => {
+    if (!isValidElement(child)) {
+      return child
+    }
+
+    const animatedChild = child as AnimatedChild
+    const id = animatedChild.props['data-id']
 
     const interactionProps = enableHover
       ? {
@@ -58,10 +74,10 @@ export function AnimatedBackground({
         }
 
     return cloneElement(
-      child,
+      animatedChild,
       {
         key: index,
-        className: cn('relative inline-flex', child.props.className),
+        className: cn('relative inline-flex', animatedChild.props.className),
         'data-checked': activeId === id ? 'true' : 'false',
         ...interactionProps,
       },
@@ -82,7 +98,7 @@ export function AnimatedBackground({
             />
           )}
         </AnimatePresence>
-        <div className="z-10">{child.props.children}</div>
+        <div className="z-10">{animatedChild.props.children}</div>
       </>,
     )
   })
