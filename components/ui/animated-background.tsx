@@ -5,15 +5,14 @@ import {
   Children,
   cloneElement,
   ReactElement,
+  ReactNode,
   useEffect,
   useState,
   useId,
 } from 'react'
 
 export type AnimatedBackgroundProps = {
-  children:
-    | ReactElement<{ 'data-id': string }>[]
-    | ReactElement<{ 'data-id': string }>
+  children: ReactNode
   defaultValue?: string
   onValueChange?: (newActiveId: string | null) => void
   className?: string
