@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     skills: ['Shaders'],
     language: ['GLSL'],
     year: 2025,
-    pinned: true,
+    pinned: false,
     id: 'Project-fractal'
   },
   {
