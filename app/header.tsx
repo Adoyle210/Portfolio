@@ -1,17 +1,25 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
+import Link from 'next/link'
 import { MenuIcon, XIcon, SparklesIcon } from 'lucide-react'
 import { motion, AnimatePresence, Variants } from 'motion/react'
 import { ThemeSwitch } from '@/components/ui/switch-theme'
+import { AnimatedBackground } from '@/components/ui/animated-background'
+import { Accordion } from '@/components/ui/accordion'
+import { NavDropdown } from '@/components/ui/nav-dropdown'
 
-// Define your navigation links
+const projectLinks = [
+  { href: '/#selected-projects', label: 'Featured Projects' },
+  { href: '/projects', label: 'All Projects' },
+]
+
+// Root-relative paths so nav works from any page (e.g. /projects)
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#selected-projects', label: 'Projects' },
-  { href: '#work-experience', label: 'Work Experience' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#connect', label: 'Connect' },
+  { href: '/', label: 'Home' },
+  { href: '/#work-experience', label: 'Work Experience' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#connect', label: 'Connect' },
 ]
 
 export function Header() {
@@ -36,18 +44,50 @@ export function Header() {
       <div className="container-custom">
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}
-          <a href="#home" className="text-xl font-bold text-primary-500 dark:text-primary-400">
+          <Link href="/" className="text-xl font-bold text-primary-500 dark:text-primary-400">
             <SparklesIcon />
             <span className="text-secondary-500"></span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links (Visible on md and larger) */}
-          <div className="hidden md:flex items-center space-x-7">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center gap-2">
+            <AnimatedBackground
+              defaultValue={navLinks[0].href}
+              className="rounded-lg bg-zinc-100 dark:bg-zinc-800"
+              transition={{
+                type: 'spring',
+                bounce: 0.2,
+                duration: 0.3,
+              }}
+              enableHover
+            >
+              {[
+                <Link
+                  key={navLinks[0].href}
+                  href={navLinks[0].href}
+                  data-id={navLinks[0].href}
+                  className="px-2 py-0.5 text-zinc-600 transition-colors duration-300 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
+                >
+                  {navLinks[0].label}
+                </Link>,
+                <NavDropdown
+                  key="projects"
+                  data-id="projects"
+                  label="Projects"
+                  links={projectLinks}
+                />,
+                ...navLinks.slice(1).map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    data-id={link.href}
+                    className="px-2 py-0.5 text-zinc-600 transition-colors duration-300 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
+                  >
+                    {link.label}
+                  </Link>
+                )),
+              ]}
+            </AnimatedBackground>
             <ThemeSwitch />
           </div>
 
@@ -79,15 +119,37 @@ export function Header() {
             variants={motionVariants}
           >
             <div className="flex flex-col items-center space-y-4">
-              {navLinks.map((link) => (
-                <a
+              <Link
+                href={navLinks[0].href}
+                className="text-lg font-bold text-neutral-800 dark:text-neutral-200"
+                onClick={closeMobileMenu}
+              >
+                {navLinks[0].label}
+              </Link>
+              <Accordion
+                title="Projects"
+                titleClassName="text-lg font-bold text-neutral-800 dark:text-neutral-200"
+              >
+                {projectLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-base text-neutral-600 dark:text-neutral-400"
+                    onClick={closeMobileMenu}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </Accordion>
+              {navLinks.slice(1).map((link) => (
+                <Link
                   key={link.href}
                   href={link.href}
                   className="text-lg font-bold text-neutral-800 dark:text-neutral-200"
-                  onClick={closeMobileMenu} // Close menu on link click
+                  onClick={closeMobileMenu}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.nav>

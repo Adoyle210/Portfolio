@@ -13,6 +13,18 @@ type Project = {
 }
 export const PROJECTS: Project[] = [
   {
+    name: 'Microchip Explorer',
+    description: 'This project is an NSF sponsored project that allows users to learn about microchips and how they work.',
+    link: 'https://engineering.oregonstate.edu/all-stories/exploring-microchips-inside',
+    video: 'https://www.google.com/',
+    image: ['img/chip/ChipLayers.png', 'img/chip/IMG_0245.jpeg', 'img/chip/LogicGateTicTacToe.png', 'img/chip/Transistors.png', 'img/chip/FlipFlop.png', ],
+    skills: ['Game Development', '3D Modeling', 'Animation'],
+    language: ['C++'],
+    year: 2026,
+    pinned: true,
+    id:'thesis-project'
+  },
+  {
     name: 'Iteractive Fractal Shader Visualization',
     description: 'Created an interactive shader-based visualization that generates mesmerizing animated fractal pattern using GLSL that change over time.',
     link: 'https://github.com/Adoyle210/GradPortfolio/tree/main/CS%20557%20-%20Computer%20Graphics%20Shaders/Final',
@@ -21,7 +33,7 @@ export const PROJECTS: Project[] = [
     skills: ['Shaders'],
     language: ['GLSL'],
     year: 2025,
-    pinned: true,
+    pinned: false,
     id: 'Project-fractal'
   },
   {
@@ -34,7 +46,7 @@ export const PROJECTS: Project[] = [
     language: ['C++'],
     tools: ['Unreal Engine 5'],
     year: 2025,
-    pinned: true,
+    pinned: false,
     id: 'project-flying'
   },
   {
@@ -97,7 +109,7 @@ export const PROJECTS: Project[] = [
       skills: ['VR/AR Development'],
       tools: ['Unreal Engine 5'],
       year: 2024,
-      pinned: true,
+      pinned: false,
         id: 'project1_osu_museum',
     },
     {
