@@ -329,7 +329,7 @@ export default function Personal() {
         <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            I&apos;m a graduate student pursuing my M.S. in Computer Science at Oregon State University, with a focus on Computer Graphics and immersive technologies.
+          Recent M.S. graduate in Computer Science from Oregon State University, building simulation systems, internal tools, and interactive applications.
           {/*  I specialize in developing educational VR applications, 3D environments, and full-stack web solutions.
           My passion lies in creating engaging, interactive experiences that make complex concepts accessible through technology. I'm currently leading research on educational game development using VR, large-screen, and mobile platforms to teach microelectronics to children.
           With experience in both industry (Genentech, Daimler Trucks) and academia, I bring a unique perspective to software development, combining practical problem-solving skills with cutting-edge research in immersive technologies. */}
