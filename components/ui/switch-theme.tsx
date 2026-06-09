@@ -2,18 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import { SunIcon, MoonIcon, MonitorIcon } from 'lucide-react' // Adjust the icon import path
+import { SunIcon, MoonIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import {
-  motion,
-  AnimatePresence,
-  Transition,
-  Variants,
-  AnimatePresenceProps,
-} from 'motion/react'
-
-// Define a union type for the possible themes returned by the hook
-type ThemeOption = 'light' | 'dark' | 'system';
+import { motion, AnimatePresence, Transition, Variants } from 'motion/react'
 
 export function ThemeSwitch() {
   const [mounted, setMounted] = useState<boolean>(false)
