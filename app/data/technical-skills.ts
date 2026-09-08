@@ -8,17 +8,17 @@ type TechnicalSkills = {
 export const TECHNICAL_SKILLS: TechnicalSkills[] = [
     {
       category: 'Programming Languages',
-      skills: ['C', 'C++', 'Python', 'JavaScript', 'TypeScript', 'Kotlin'],
+      skills: ['C', 'C++', 'CSS', 'GLSL', 'HTML', 'JavaScript', 'Kotlin', 'Python', 'SQL', 'TypeScript'],
       id: 'tech1',
     },
     {
       category: 'Development Tools',
-      skills: ['Unreal Engine 5', 'Git', 'Docker', 'Blender', 'PiXYZ', 'GitHub Actions', 'Postman'],
+      skills: ['Android Studio', 'Blender', 'Docker', 'Git', 'GitHub Actions', 'Next.js', 'Node.js', 'OpenWeather API', 'PiXYZ', 'Postman', 'PostgreSQL', 'Tailwind CSS', 'Unreal Engine 5', 'Vercel', 'WebGL'],
       id: 'tech2',
     },
     {
       category: 'Technical Skills',
-      skills: ['Web Development', 'Data Analysis', 'Full-Stack Development', 'VR/AR Development', '3D Modeling', 'API Integration', 'UI Development', 'Testing and Debugging'],
+      skills: ['3D Modeling', 'API Development', 'API Integration', 'Animation', 'Data Analysis', 'Data Modeling', 'Database Design', 'Full-Stack Development', 'Game Development', 'Interactive Storytelling', 'Mobile Development', 'Rigging', 'Shaders', 'Simulation Systems', 'Testing and Debugging', 'UI Development', 'VR/AR Development', 'Visual Effects', 'Web Development'],
       id: 'tech3',
     },
     {

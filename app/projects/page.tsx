@@ -4,6 +4,7 @@ import { useState, useMemo, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 import { ArrowLeft, ChevronDown, Filter, X } from 'lucide-react'
 import { ImageCarousel } from '@/components/ui/image-carousel'
 import { YouTubeEmbed } from '@/components/ui/youtube-embed'
@@ -298,10 +299,20 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
 }
 
 export default function ProjectsPage() {
-  const [filtersOpen, setFiltersOpen] = useState(false)
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([])
-  const [selectedTools, setSelectedTools] = useState<string[]>([])
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
+  const searchParams = useSearchParams()
+
+  // Skills-section links land here as ?skill=X, ?tool=Y, ?language=Z
+  // (each may repeat, e.g. ?skill=3D+Modeling&skill=Animation)
+  const initialSkills = useMemo(() => searchParams.getAll('skill'), [searchParams])
+  const initialTools = useMemo(() => searchParams.getAll('tool'), [searchParams])
+  const initialLanguages = useMemo(() => searchParams.getAll('language'), [searchParams])
+  const hasIncomingFilter =
+    initialSkills.length > 0 || initialTools.length > 0 || initialLanguages.length > 0
+
+  const [filtersOpen, setFiltersOpen] = useState(hasIncomingFilter)
+  const [selectedSkills, setSelectedSkills] = useState<string[]>(initialSkills)
+  const [selectedTools, setSelectedTools] = useState<string[]>(initialTools)
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(initialLanguages)
 
   const activeFilterCount =
     selectedSkills.length + selectedTools.length + selectedLanguages.length
