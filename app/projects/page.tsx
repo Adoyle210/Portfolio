@@ -306,12 +306,7 @@ export default function ProjectsPage() {
   const activeFilterCount =
     selectedSkills.length + selectedTools.length + selectedLanguages.length
 
-  // Get all unique years, skills, tools, languages
-  const years = useMemo(() => {
-    const uniqueYears = [...new Set(PROJECTS.map(project => project.year))].sort((a, b) => b - a)
-    return uniqueYears
-  }, [])
-
+  // Get all unique skills, tools, languages
   const allSkills = useMemo(() => {
     const uniqueSkills = [...new Set(PROJECTS.flatMap(project => project.skills ?? []))].sort()
     return uniqueSkills
