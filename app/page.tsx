@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -15,13 +16,13 @@ import { ImageCarousel } from '@/components/ui/image-carousel'
 import { YouTubeEmbed } from '@/components/ui/youtube-embed'
 import Link from 'next/link'
 import Image from 'next/image'
-import { AnimatedBackground } from '@/components/ui/animated-background'
 import { publicImageSrc } from '@/lib/utils'
 
 /* Data */
 import { PROJECTS } from './data/project'
 import { WORK_EXPERIENCE } from './data/work-experience'
 import { TECHNICAL_SKILLS } from './data/technical-skills'
+import { EDUCATION, PUBLICATIONS } from './data/education'
 import {
   EMAIL,
   SOCIAL_LINKS,
@@ -300,6 +301,113 @@ function MagneticSocialLink({
   )
 }
 
+/* ---------------- Skills section ---------------- */
+
+// Which Project field each skill category maps to, and the query param
+// the /projects page reads to pre-filter on that field. Categories with
+// `null` (Soft Skills, spoken Languages) have no project data to link to,
+// so their tags are never clickable.
+const CATEGORY_FIELD: Record<
+  string,
+  { field: 'skills' | 'tools' | 'language'; param: 'skill' | 'tool' | 'language' } | null
+> = {
+  tech1: { field: 'language', param: 'language' },
+  tech2: { field: 'tools', param: 'tool' },
+  tech3: { field: 'skills', param: 'skill' },
+  tech4: null,
+  tech5: null,
+}
+
+const SKILLS_PREVIEW_COUNT = 10
+
+type RankedSkill = {
+  skill: string
+  count: number
+  param: 'skill' | 'tool' | 'language' | null
+}
+
+function rankSkills(categoryId: string, skills: string[]): RankedSkill[] {
+  const mapping = CATEGORY_FIELD[categoryId]
+
+  return skills
+    .map((skill) => {
+      const count = mapping
+        ? PROJECTS.filter((project) => (project[mapping.field] ?? []).includes(skill)).length
+        : 0
+      return { skill, count, param: mapping ? mapping.param : null }
+    })
+    .sort((a, b) => {
+      // Linkable skills (demonstrated by at least one project) float to the
+      // top so the "top 5" preview leads with things people can click into.
+      const aLinkable = a.count > 0 ? 1 : 0
+      const bLinkable = b.count > 0 ? 1 : 0
+      if (aLinkable !== bLinkable) return bLinkable - aLinkable
+      if (a.count !== b.count) return b.count - a.count
+      return a.skill.localeCompare(b.skill)
+    })
+}
+
+function SkillTag({ ranked }: { ranked: RankedSkill }) {
+  if (ranked.count > 0 && ranked.param) {
+    return (
+      <Link
+        href={`/projects?${ranked.param}=${encodeURIComponent(ranked.skill)}`}
+        className="rounded-full bg-zinc-200 px-2.5 py-1 text-sm text-zinc-700 transition-colors hover:bg-zinc-900 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-100 dark:hover:text-zinc-900"
+      >
+        {ranked.skill}
+      </Link>
+    )
+  }
+
+  return (
+    <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-sm text-zinc-500 dark:bg-zinc-900/60 dark:text-zinc-500">
+      {ranked.skill}
+    </span>
+  )
+}
+
+function SkillCategorySection({
+  category,
+}: {
+  category: { category: string; skills: string[]; id: string }
+}) {
+  const ranked = rankSkills(category.id, category.skills)
+  const [expanded, setExpanded] = useState(false)
+  const visible = expanded ? ranked : ranked.slice(0, SKILLS_PREVIEW_COUNT)
+  const hiddenCount = ranked.length - visible.length
+
+  return (
+    <div className="rounded-xl bg-zinc-100 px-3 py-3 dark:bg-zinc-900/80">
+      <div className="flex flex-col space-y-2">
+        <h4 className="font-normal dark:text-zinc-100">{category.category}</h4>
+        <div className="flex flex-wrap gap-1.5">
+          {visible.map((ranked) => (
+            <SkillTag key={ranked.skill} ranked={ranked} />
+          ))}
+        </div>
+        {hiddenCount > 0 && (
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="self-start text-sm text-zinc-500 hover:text-zinc-700 hover:underline dark:text-zinc-400 dark:hover:text-zinc-200"
+          >
+            Show {hiddenCount} more
+          </button>
+        )}
+        {expanded && ranked.length > SKILLS_PREVIEW_COUNT && (
+          <button
+            type="button"
+            onClick={() => setExpanded(false)}
+            className="self-start text-sm text-zinc-500 hover:text-zinc-700 hover:underline dark:text-zinc-400 dark:hover:text-zinc-200"
+          >
+            Show less
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function Personal() {
   return (
     <motion.main
@@ -341,6 +449,74 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+
+          {/* Education Section */}
+
+    <h3 id="education" className="mb-5 text-lg font-medium">Education</h3>
+            <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+            <div className="flex flex-col space-y-3">
+              {EDUCATION.map((edu) => (
+                <div
+                  key={edu.id}
+                  className="relative rounded-2xl bg-zinc-50/40 p-4 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50"
+                >
+                  <div className="flex w-full flex-row justify-between">
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">{edu.degree}</h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">{edu.institution}</p>
+                    </div>
+                    <p className="shrink-0 pl-4 text-zinc-600 dark:text-zinc-400">
+                      {edu.start} - {edu.end}
+                    </p>
+                  </div>
+                  {edu.details && edu.details.length > 0 && (
+                    <ul className="list-disc pl-5 mt-2 space-y-1 text-zinc-500 dark:text-zinc-400">
+                      {edu.details.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+    
+            {PUBLICATIONS.length > 0 && (
+              <div className="mt-6">
+                <h4 className="mb-3 text-sm font-medium tracking-wide text-zinc-500 uppercase dark:text-zinc-400">
+                  Publications
+                </h4>
+                <ul className="space-y-2">
+                  {PUBLICATIONS.map((pub) => (
+                    <li key={pub.id} className="text-zinc-600 dark:text-zinc-400">
+                      {pub.link ? (
+                        <a
+                          href={pub.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-600 dark:text-zinc-100 dark:decoration-zinc-700 dark:hover:decoration-zinc-400"
+                        >
+                          {pub.title}
+                        </a>
+                      ) : (
+                        <span className="text-zinc-900 dark:text-zinc-100">{pub.title}</span>
+                      )}
+                      <span className="text-zinc-500 dark:text-zinc-500">
+                        {' '}
+                        — {pub.venue}, {pub.year}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </motion.section>
+ 
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >  
+
+      {/* Featured Projects Section */}
         <h3 id="selected-projects" className="mb-5 text-lg font-medium">Featured Projects</h3>
         <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -443,34 +619,10 @@ export default function Personal() {
       >
         <h3 id="skills" className="mb-3 text-lg font-medium">Skills</h3>
         <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {TECHNICAL_SKILLS.map((post) => (
-              <Link
-                key={post.id}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.id}
-                data-id={post.id}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.category}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.skills.join(', ')}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
+        <div className="flex flex-col space-y-3">
+          {TECHNICAL_SKILLS.map((category) => (
+            <SkillCategorySection key={category.id} category={category} />
+          ))}
         </div>
       </motion.section>
 
