@@ -23,6 +23,7 @@ import { publicImageSrc } from '@/lib/utils'
 import { PROJECTS } from './data/project'
 import { WORK_EXPERIENCE } from './data/work-experience'
 import { TECHNICAL_SKILLS } from './data/technical-skills'
+import { EDUCATION, PUBLICATIONS } from './data/education'
 import {
   EMAIL,
   SOCIAL_LINKS,
@@ -449,6 +450,74 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+
+          {/* Education Section */}
+
+    <h3 id="education" className="mb-5 text-lg font-medium">Education</h3>
+            <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
+            <div className="flex flex-col space-y-3">
+              {EDUCATION.map((edu) => (
+                <div
+                  key={edu.id}
+                  className="relative rounded-2xl bg-zinc-50/40 p-4 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50"
+                >
+                  <div className="flex w-full flex-row justify-between">
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">{edu.degree}</h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">{edu.institution}</p>
+                    </div>
+                    <p className="shrink-0 pl-4 text-zinc-600 dark:text-zinc-400">
+                      {edu.start} - {edu.end}
+                    </p>
+                  </div>
+                  {edu.details && edu.details.length > 0 && (
+                    <ul className="list-disc pl-5 mt-2 space-y-1 text-zinc-500 dark:text-zinc-400">
+                      {edu.details.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+    
+            {PUBLICATIONS.length > 0 && (
+              <div className="mt-6">
+                <h4 className="mb-3 text-sm font-medium tracking-wide text-zinc-500 uppercase dark:text-zinc-400">
+                  Publications
+                </h4>
+                <ul className="space-y-2">
+                  {PUBLICATIONS.map((pub) => (
+                    <li key={pub.id} className="text-zinc-600 dark:text-zinc-400">
+                      {pub.link ? (
+                        <a
+                          href={pub.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-600 dark:text-zinc-100 dark:decoration-zinc-700 dark:hover:decoration-zinc-400"
+                        >
+                          {pub.title}
+                        </a>
+                      ) : (
+                        <span className="text-zinc-900 dark:text-zinc-100">{pub.title}</span>
+                      )}
+                      <span className="text-zinc-500 dark:text-zinc-500">
+                        {' '}
+                        — {pub.venue}, {pub.year}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </motion.section>
+ 
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >  
+
+      {/* Featured Projects Section */}
         <h3 id="selected-projects" className="mb-5 text-lg font-medium">Featured Projects</h3>
         <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
