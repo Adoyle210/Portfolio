@@ -16,7 +16,6 @@ import { ImageCarousel } from '@/components/ui/image-carousel'
 import { YouTubeEmbed } from '@/components/ui/youtube-embed'
 import Link from 'next/link'
 import Image from 'next/image'
-import { AnimatedBackground } from '@/components/ui/animated-background'
 import { publicImageSrc } from '@/lib/utils'
 
 /* Data */
