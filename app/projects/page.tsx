@@ -1,5 +1,7 @@
 'use client'
 
+import React, { Suspense } from 'react';
+
 import { useState, useMemo, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
@@ -298,7 +300,7 @@ function ProjectMedia({ video, images }: ProjectMediaProps) {
   )
 }
 
-export default function ProjectsPage() {
+function ProjectsPageContent() {
   const searchParams = useSearchParams()
 
   // Skills-section links land here as ?skill=X, ?tool=Y, ?language=Z
@@ -632,5 +634,13 @@ export default function ProjectsPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={null}>
+      <ProjectsPageContent />
+    </Suspense>
   )
 }
