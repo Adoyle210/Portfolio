@@ -12,6 +12,7 @@ type Education = {
     id: string
     title: string
     venue: string
+    authors?: string[]
     type: 'thesis' | 'conference-poster'
     year: number
     link?: string
@@ -49,10 +50,11 @@ type Education = {
     },
     {
       id: 'pub-psych-conference',
-      title: 'Virtual Reality as a Tool to Reduce Task-Related Interference.',
-      venue: 'Human Factors and Ergonomics Society (HFES) ASPIRE International Annual Meeting — Poster Presentation',
+      title: 'Virtual Reality as a Tool to Reduce Task-Related Interference',
+      venue: 'HFES ASPIRE International Annual Meeting — Poster Presentation',
       type: 'conference-poster',
+      authors:['Alejandra Hilbert', 'Alexis Doyle', 'Christopher A. Sanchez'],
       year: 2026,
-      //link: 'https://www.hfes.org/aspire/aspire-international/aspire-2026/posters', 
+      link: 'https://hfesam2026.conference-program.com/presentation/?id=POST373&sess=sess246', 
     },
   ]

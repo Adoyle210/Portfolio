@@ -466,7 +466,7 @@ export default function Personal() {
                       <p className="text-zinc-500 dark:text-zinc-400">{edu.institution}</p>
                     </div>
                     <p className="shrink-0 pl-4 text-zinc-600 dark:text-zinc-400">
-                      {edu.start} - {edu.end}
+                      {edu.end}
                     </p>
                   </div>
                   {edu.details && edu.details.length > 0 && (
@@ -504,6 +504,12 @@ export default function Personal() {
                         {' '}
                         — {pub.venue}, {pub.year}
                       </span>
+                      {pub.authors && pub.authors.length > 0 && (
+                        <p className="text-zinc-500 dark:text-zinc-500">
+                          {'By: '}
+                          {pub.authors.join(', ')}
+                        </p>
+                      )}
                     </li>
                   ))}
                 </ul>
