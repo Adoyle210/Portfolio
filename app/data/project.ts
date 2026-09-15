@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
     description: 'Designed and built a personal portfolio website using Next.js and TypeScript to showcase projects, experience, and technical skills.',
     link: 'https://adoyle.vercel.app/',
     video: 'https://www.google.com/',
-    image: ['img/portfolio.png'],
+    image: ['img/site.png'],
     skills: ['Web Development', 'UI Development'],
     language: ['TypeScript', 'JavaScript', 'HTML', 'CSS'],
     tools: ['Next.js', 'Tailwind CSS', 'Vercel'],
@@ -104,8 +104,7 @@ export const PROJECTS: Project[] = [
       name: 'OSU Virtual Reality Museum',
       description:'Developed an immersive VR museum in Unreal Engine that showcases student stories at Oregon State University through interactive storytelling and spatial navigation.',
       link: 'https://github.com/Pranj99/MUStudDivDisplay',
-      video:
-        'https://www.youtube.com/watch?v=xXWOZi6mr5w',
+      video:'https://www.youtube.com/watch?v=xXWOZi6mr5w',
       image: ['img/kitchenModel.png'], // Placeholder image
       skills: ['VR/AR Development','Interactive Storytelling'],
       tools: ['Unreal Engine 5'],
@@ -130,7 +129,7 @@ export const PROJECTS: Project[] = [
     {
       name: 'Weather App',
       description: 'Built a mobile weather app in Kotlin that fetches location-based forecasts, handles API-driven data, and presents weather information in a clean user interface.',
-      link: 'https://www.google.com/',
+      link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS493-CloudApplicationDevelopment/weatherApp',
       video: 'https://www.google.com/',
       image: ['img/portfolio.png'], // Placeholder image
       skills: ['Mobile Development', 'API Integration'],
@@ -145,7 +144,7 @@ export const PROJECTS: Project[] = [
       description: 'Developed a lightweight course management API as an alternative to Canvas, focusing on backend structure, data handling, and application design.',
       link: 'https://github.com/Adoyle210/Tarpaulin_API',
       video: 'https://www.google.com/',
-      image: ['img/portfolio.png'], // Placeholder image
+      image: ['img/APIendpoints.png'], // Placeholder image
       skills: ['API Development'],
       language: ['JavaScript'],
       tools: ['PostgreSQL', 'Node.js'],
@@ -158,12 +157,24 @@ export const PROJECTS: Project[] = [
       description: 'Designed a relational database for aspiring Pokémon trainers to track Pokémon names, types, IDs, origin, and win-loss records, then refined the schema based on peer feedback to improve usability and data management.',
       link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS340-DataBases/Project',
       video: 'https://www.google.com/',
-      image: ['img/pokedex.png'],
-      skills: ['Database Design', 'SQL', 'Data Modeling'],
+      image: ['img/portfolio.png'],
+      skills: ['Database Design', 'Data Modeling'],
       language: ['SQL'],
       tools: ['PostgreSQL'],
       year: 2023,
       pinned: false,
       id: 'project-pokedex-database',
+    },
+    {
+      name: 'Multi-threaded Map-Reduce pipeline',
+      description: 'Implemented a multi-threaded map-reduce pipeline in Rust, partitioning data across N threads and aggregating results concurrently.',
+      link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS344-OperatingSystems/A6-multi-threaded-map-reduced-in-rust',
+      video: 'https://www.google.com/',
+      image: ['img/portfolio.png'], // Placeholder image
+      skills: ['Concurrent Programming', 'Systems Programming'],
+      language: ['Rust'],
+      year: 2023,
+      pinned: false,
+      id: 'project-multi-threaded-map-reduce',
     }
   ]
