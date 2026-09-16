@@ -1,9 +1,9 @@
 type Project = {
     name: string
     description: string
-    link: string
-    video: string
-    image: string []
+    link?: string
+    video?: string
+    image?: string []
     skills?: string []
     language?: string []
     tools?: string []
@@ -16,7 +16,6 @@ export const PROJECTS: Project[] = [
     name: 'Microchip Explorer',
     description: 'Developed an interactive educational simulation in Unreal Engine that helps users learn how microchips work through 3D visualization, animation, and hands-on exploration.',
     link: 'https://engineering.oregonstate.edu/all-stories/exploring-microchips-inside',
-    video: 'https://www.google.com/',
     image: ['img/chip/ChipLayers.png', 'img/chip/IMG_0245.jpeg', 'img/chip/LogicGateTicTacToe.png', 'img/chip/Transistors.png', 'img/chip/FlipFlop.png', ],
     skills: ['Game Development', '3D Modeling', 'Animation', 'Simulation Systems'],
     language: ['C++'],
@@ -29,7 +28,6 @@ export const PROJECTS: Project[] = [
     name: 'Iteractive Fractal Shader Visualization',
     description: 'Created an interactive shader-based visualization that generates mesmerizing animated fractal pattern using GLSL that change over time.',
     link: 'https://github.com/Adoyle210/GradPortfolio/tree/main/CS%20557%20-%20Computer%20Graphics%20Shaders/Final',
-    video: 'https://www.google.com/',
     image: ['img/fractal/fractal3.png', 'img/fractal/fractal2.png'],
     skills: ['Shaders'],
     language: ['GLSL'],
@@ -41,8 +39,6 @@ export const PROJECTS: Project[] = [
   {
     name: 'Character Flight Animation Study',
     description: 'Built a small Unreal Engine project focused on character animation and movement to simulate the visual effect of flight.',
-    link: 'https://www.google.com/',
-    video: 'https://www.google.com/',
     image: ['img/flight/flight1.png', 'img/flight/flight2.png'],
     skills: ['Game Development', 'Animation'],
     language: ['C++'],
@@ -55,7 +51,6 @@ export const PROJECTS: Project[] = [
     name: 'Porfolio Website',
     description: 'Designed and built a personal portfolio website using Next.js and TypeScript to showcase projects, experience, and technical skills.',
     link: 'https://adoyle.vercel.app/',
-    video: 'https://www.google.com/',
     image: ['img/site.png'],
     skills: ['Web Development', 'UI Development'],
     language: ['TypeScript', 'JavaScript', 'HTML', 'CSS'],
@@ -91,7 +86,6 @@ export const PROJECTS: Project[] = [
   {
     name: 'Isometric Kitchen Model',
     description: 'Built my first Blender environment model as a stylized isometric kitchen scene focused on composition and spatial modeling.', 
-    link: 'https://www.google.com/',
     video: 'video/kitchenModel.mp4',
     image: ['img/kitchenModel.png'],
     skills: ['3D Modeling'],
@@ -116,8 +110,6 @@ export const PROJECTS: Project[] = [
       name: 'Planen',
       description: "Built a native Android planning app in Kotlin to help users manage tasks and deadlines with a learning focus on mobile development fundamentals.",
       link: "https://github.com/shawn120/Planen-Android",
-      video:
-        'https://www.google.com/',
       skills: ['Mobile Development', 'UI Development'],
       language: ['Kotlin'],
       tools: ['Android Studio'],
@@ -130,7 +122,6 @@ export const PROJECTS: Project[] = [
       name: 'Weather App',
       description: 'Built a mobile weather app in Kotlin that fetches location-based forecasts, handles API-driven data, and presents weather information in a clean user interface.',
       link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS493-CloudApplicationDevelopment/weatherApp',
-      video: 'https://www.google.com/',
       image: ['img/portfolio.png'], // Placeholder image
       skills: ['Mobile Development', 'API Integration'],
       language: ['Kotlin'],
@@ -143,7 +134,6 @@ export const PROJECTS: Project[] = [
       name: 'Tarpaulin API',
       description: 'Developed a lightweight course management API as an alternative to Canvas, focusing on backend structure, data handling, and application design.',
       link: 'https://github.com/Adoyle210/Tarpaulin_API',
-      video: 'https://www.google.com/',
       image: ['img/APIendpoints.png'], // Placeholder image
       skills: ['API Development'],
       language: ['JavaScript'],
@@ -156,7 +146,6 @@ export const PROJECTS: Project[] = [
       name: 'Pokédex Database',
       description: 'Designed a relational database for aspiring Pokémon trainers to track Pokémon names, types, IDs, origin, and win-loss records, then refined the schema based on peer feedback to improve usability and data management.',
       link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS340-DataBases/Project',
-      video: 'https://www.google.com/',
       image: ['img/portfolio.png'],
       skills: ['Database Design', 'Data Modeling'],
       language: ['SQL'],
@@ -169,7 +158,6 @@ export const PROJECTS: Project[] = [
       name: 'Multi-threaded Map-Reduce pipeline',
       description: 'Implemented a multi-threaded map-reduce pipeline in Rust, partitioning data across N threads and aggregating results concurrently.',
       link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS344-OperatingSystems/A6-multi-threaded-map-reduced-in-rust',
-      video: 'https://www.google.com/',
       image: ['img/portfolio.png'], // Placeholder image
       skills: ['Concurrent Programming', 'Systems Programming'],
       language: ['Rust'],

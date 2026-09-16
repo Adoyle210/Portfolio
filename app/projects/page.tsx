@@ -5,19 +5,10 @@ import React, { Suspense } from 'react';
 import { useState, useMemo, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
-import { ArrowLeft, ChevronDown, Filter, X } from 'lucide-react'
-import { ImageCarousel } from '@/components/ui/image-carousel'
-import { YouTubeEmbed } from '@/components/ui/youtube-embed'
-import { publicImageSrc } from '@/lib/utils'
-import {
-  MorphingDialog,
-  MorphingDialogTrigger,
-  MorphingDialogContent,
-  MorphingDialogClose,
-  MorphingDialogContainer,
-} from '@/components/ui/morphing-dialog'
+import { ArrowLeft, ChevronDown, Filter } from 'lucide-react'
+import { ProjectMedia } from '@/components/ui/project-media'
+import { ProjectLink } from '@/components/ui/project-link'
 import { PROJECTS } from '../data/project'
 
 const VARIANTS_CONTAINER = {
@@ -85,217 +76,6 @@ function FilterSection({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
-  )
-}
-
-type ProjectMediaProps = {
-  video?: string
-  images?: string[]
-}
-
-function ProjectMedia({ video, images }: ProjectMediaProps) {
-  const isValidVideo = video && 
-    video !== 'https://www.google.com/' && 
-    video.trim() !== '' &&
-    (video.startsWith('http') || video.startsWith('/') || video.startsWith('video/'))
-
-  const isValidImage = images && 
-    images.length > 0 && 
-    images[0] !== 'https://www.google.com/' && 
-    images[0].trim() !== ''
-
-  const isYouTubeVideo = isValidVideo && (
-    video.includes('youtube.com') || 
-    video.includes('youtu.be')
-  )
-
-  const isLocalVideo = isValidVideo && (
-    video.startsWith('video/') || 
-    video.endsWith('.mp4') || 
-    video.endsWith('.webm') || 
-    video.endsWith('.mov')
-  )
-
-  if (isYouTubeVideo) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <YouTubeEmbed videoId={video} />
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <YouTubeEmbed videoId={video} />
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <X className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  if (isLocalVideo) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <video
-            src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="aspect-video w-full cursor-zoom-in rounded-xl"
-            onError={(e) => {
-              console.error('Video failed to load:', video, e)
-            }}
-          />
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-              onError={(e) => {
-                console.error('Video failed to load in dialog:', video, e)
-              }}
-            />
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <X className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  if (isValidImage && images.length > 1) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <ImageCarousel images={images} />
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <ImageCarousel images={images} />
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <X className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  if (isValidImage) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <div className="relative aspect-video w-full">
-            <Image
-              src={publicImageSrc(images[0])}
-              alt="Project preview"
-              fill
-              className="cursor-zoom-in rounded-xl object-cover"
-              onError={(e) => {
-                console.error('Image failed to load:', images[0], e)
-              }}
-            />
-          </div>
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <div className="relative aspect-video h-[50vh] w-full md:h-[70vh]">
-              <Image
-                src={publicImageSrc(images[0])}
-                alt="Project preview"
-                fill
-                className="rounded-xl object-cover"
-                onError={(e) => {
-                  console.error('Image failed to load in dialog:', images[0], e)
-                }}
-              />
-            </div>
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <X className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  return (
-    <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-      <span className="text-zinc-500 dark:text-zinc-400">No media available</span>
     </div>
   )
 }
@@ -562,15 +342,11 @@ function ProjectsPageContent() {
                     <ProjectMedia video={project.video} images={project.image} />
                   </div>
                   <div className="px-1">
-                    <a
-                      className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50 mb-2"
+                    <ProjectLink
+                      name={project.name}
                       href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {project.name}
-                      <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                    </a>
+                      className="font-base mb-2 inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                    />
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-3">
                       {project.description}
                     </p>
