@@ -1,22 +1,12 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import { TextEffect } from '@/components/ui/text-effect'
-import {
-  MorphingDialog,
-  MorphingDialogTrigger,
-  MorphingDialogContent,
-  MorphingDialogClose,
-  MorphingDialogContainer,
-} from '@/components/ui/morphing-dialog'
-import { ImageCarousel } from '@/components/ui/image-carousel'
-import { YouTubeEmbed } from '@/components/ui/youtube-embed'
+import { ProjectMedia } from '@/components/ui/project-media'
+import { ProjectLink } from '@/components/ui/project-link'
 import Link from 'next/link'
-import Image from 'next/image'
-import { publicImageSrc } from '@/lib/utils'
 
 /* Data */
 import { PROJECTS } from './data/project'
@@ -45,226 +35,6 @@ const VARIANTS_SECTION = {
 
 const TRANSITION_SECTION = {
   duration: 0.3,
-}
-
-type ProjectMediaProps = {
-  video?: string
-  images?: string[]
-}
-
-function ProjectMedia({ video, images }: ProjectMediaProps) {
-  // Check if video is valid (not placeholder URL and not empty)
-  const isValidVideo = video && 
-    video !== 'https://www.google.com/' && 
-    video.trim() !== '' &&
-    (video.startsWith('http') || video.startsWith('/') || video.startsWith('video/'))
-
-  // Check if images are valid (not placeholder URL and not empty)
-  const isValidImage = images && 
-    images.length > 0 && 
-    images[0] !== 'https://www.google.com/' && 
-    images[0].trim() !== ''
-
-  // Check if it's a YouTube video
-  const isYouTubeVideo = isValidVideo && (
-    video.includes('youtube.com') || 
-    video.includes('youtu.be')
-  )
-
-  // Check if it's a local video file
-  const isLocalVideo = isValidVideo && (
-    video.startsWith('video/') || 
-    video.endsWith('.mp4') || 
-    video.endsWith('.webm') || 
-    video.endsWith('.mov')
-  )
-
-  // If we have a YouTube video, use YouTube embed
-  if (isYouTubeVideo) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <YouTubeEmbed videoId={video} />
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <YouTubeEmbed videoId={video} />
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <XIcon className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  // If we have a local video file, use regular video element
-  if (isLocalVideo) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <video
-            src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="aspect-video w-full cursor-zoom-in rounded-xl"
-            onError={(e) => {
-              console.error('Video failed to load:', video, e)
-            }}
-          />
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-              onError={(e) => {
-                console.error('Video failed to load in dialog:', video, e)
-              }}
-            />
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <XIcon className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  // If we have multiple images, use carousel
-  if (isValidImage && images.length > 1) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <ImageCarousel images={images} />
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <ImageCarousel images={images} />
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <XIcon className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  // If we have a single image, show it normally
-  if (isValidImage) {
-    return (
-      <MorphingDialog
-        transition={{
-          type: 'spring',
-          bounce: 0,
-          duration: 0.3,
-        }}
-      >
-        <MorphingDialogTrigger>
-          <div className="relative aspect-video w-full">
-            <Image
-              src={publicImageSrc(images[0])}
-              alt="Project preview"
-              fill
-              className="cursor-zoom-in rounded-xl object-cover"
-              onError={(e) => {
-                console.error('Image failed to load:', images[0], e)
-              }}
-            />
-          </div>
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-            <div className="relative aspect-video h-[50vh] w-full md:h-[70vh]">
-              <Image
-                src={publicImageSrc(images[0])}
-                alt="Project preview"
-                fill
-                className="rounded-xl object-cover"
-                onError={(e) => {
-                  console.error('Image failed to load in dialog:', images[0], e)
-                }}
-              />
-            </div>
-          </MorphingDialogContent>
-          <MorphingDialogClose
-            className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: 1,
-                transition: { delay: 0.3, duration: 0.1 },
-              },
-              exit: { opacity: 0, transition: { duration: 0 } },
-            }}
-          >
-            <XIcon className="h-5 w-5 text-zinc-500" />
-          </MorphingDialogClose>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-    )
-  }
-
-  // Fallback: show a placeholder
-  return (
-    <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-      <span className="text-zinc-500 dark:text-zinc-400">No media available</span>
-    </div>
-  )
 }
 
 function MagneticSocialLink({
@@ -527,19 +297,12 @@ export default function Personal() {
         <hr className="border-zinc-300 dark:border-zinc-600 mb-5" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.filter(project => project.pinned).map((project) => (
-            <div key={project.name} className="space-y-2">
+            <div key={project.id} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                 <ProjectMedia video={project.video} images={project.image} />
               </div>
               <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
+                <ProjectLink name={project.name} href={project.link} />
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
                 </p>
