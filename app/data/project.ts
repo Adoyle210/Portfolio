@@ -137,7 +137,7 @@ export const PROJECTS: Project[] = [
       image: ['img/APIendpoints.png'], // Placeholder image
       skills: ['API Development'],
       language: ['JavaScript'],
-      tools: ['PostgreSQL', 'Node.js'],
+      tools: ['MySQL', 'Node.js'],
       year: 2024,
       pinned: false,
       id: 'project4-tarpaulin-api',
@@ -145,11 +145,11 @@ export const PROJECTS: Project[] = [
     {
       name: 'Pokédex Database',
       description: 'Designed a relational database for aspiring Pokémon trainers to track Pokémon names, types, IDs, origin, and win-loss records, then refined the schema based on peer feedback to improve usability and data management.',
-      link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS340-DataBases/Project',
+      link: 'https://github.com/Adoyle210/UndergradPortfolio/tree/main/CS340-DataBases',
       image: ['img/portfolio.png'],
-      skills: ['Database Design', 'Data Modeling'],
+      skills: ['Database Design', 'SQL', 'Data Modeling'],
       language: ['SQL'],
-      tools: ['PostgreSQL'],
+      tools: ['MySQL'],
       year: 2023,
       pinned: false,
       id: 'project-pokedex-database',
